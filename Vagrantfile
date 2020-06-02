@@ -24,14 +24,13 @@ Vagrant.configure("2") do |config|
    sudo apt-get update
    sudo apt-get install -y python3-venv zip pylint3
 
-   touch /home/vagrant/.bash_aliases
-   if ! grep -q PYTHON_ALIAS_ADDED /home/vagrant/.bash_aliases; then
-     echo "# PYTHON_ALIAS_ADDED" >> /home/vagrant/.bash_aliases
-     echo "alias python='python3'" >> /home/vagrant/.bash_aliases
-     echo "alias rundebugserver='./manage.py runserver 0.0.0.0:8000'" >> \ 
-           /home/vagrant/.bash_aliases
-     echo "alias activateenv='source ~/env/bin/activate' >> \ 
-           /home/vagrant/.bash_aliases
+   aliases=/home/vagrant/.bash_aliases
+   touch $aliases
+   if ! grep -q ALIAS_ADDED $aliases; then
+     echo "# ALIAS_ADDED" >> $aliases
+     echo "alias python='python3'" >> $aliases
+     echo "alias rundebugserver='./manage.py runserver 0.0.0.0:8000'" >> $aliases
+     echo "alias activateenv='source ~/env/bin/activate'" >> $aliases
    fi
  SHELL
 end
